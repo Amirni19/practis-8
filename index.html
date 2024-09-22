@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .boxWide {
+  position: relative;
+  margin: 5px 10x;
+}
+
+.box5 {
+  top: 100px;
+  left: 100px;
+  height: 30px;
+  width: 30px;
+  border-radius: 3px;
+  position: absolute;
+  background: #d37116;
+}
+</style>
+<body>
+    <div id='color'>Рыбка</div>
+    <button onclick='changeColor()'>Налить воду</button>
+
+    <button id="r">R</button>
+    <button id="G">G</button>
+    <button id="B">B</button>
+
+    <div class="boxWide">
+        <div id="divBox5" class="box5"></div>
+      </div>
+
+    <script>
+    function changeColor() {
+      document.getElementById('color').style.backgroundColor = 'aqua';
+    }
+
+    const redButton = document.getElementById("r");
+    const greenButton = document.getElementById("g");
+    const blueButton = document.getElementById("b");
+    const body = document.body;
+    const previousBackgroundColor = body.style.backgroundColor;
+
+    redButton.addEventListener("click", () => {
+    if (body.style.backgroundColor === "red") {
+        body.style.backgroundColor = "white";
+    } else {
+        body.style.backgroundColor = "red";
+    }
+    });
+    greenButton.addEventListener("click", () => {
+    if (body.style.backgroundColor === "green") {
+        body.style.backgroundColor = "white";
+    } else {
+        body.style.backgroundColor = "green";
+    }
+    });
+    blueButton.addEventListener("click", () => {
+    if (body.style.backgroundColor === "blue") {
+        body.style.backgroundColor = "white";
+    } else {
+        body.style.backgroundColor = "blue";
+    }
+    });
+
+    let box5Move = document.getElementById('divBox5');
+let pos = {top: 100, left: 100}
+box5Move.style.top = pos.top + 'px';
+box5Move.style.left = pos.left + 'px';
+
+let obj = {
+  '40': ['top', 1], 
+  '38': ['top', -1], 
+  '39': ['left', 1], 
+  '37': ['left', -1],
+}
+
+addEventListener('keydown', function(e) {
+  let key = obj[e.keyCode];
+  if( key ){ // key[0] == 'top' или 'left'
+    pos[ key[0] ] = pos[ key[0] ] + key[1];
+    box5Move.style[ key[0] ] = pos[ key[0] ] + 'px';
+  }
+});
+    </script>
+</body>
+</html>
